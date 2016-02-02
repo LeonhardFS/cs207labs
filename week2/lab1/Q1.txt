@@ -1,0 +1,40 @@
+Question 1: Answer
+==================
+
+given:
+------
+108ms to retrieve all page's data
+
+How many passwords can be encrypted in 108ms?
+
+0.89 cycles per byte for 256bit keys
+
+each password < 11bytes long
+processor runs at 2GHz
+
+answer:
+-------
+
+#of different passwords: 2^(8 * 10) =  2^80
+
+each encrypted password is 256bit wide
+==> 256bit / 8bit = 32byte 
+encryption for each password lasts 0.89 * 32 cycles = 28.48 cycles
+one cycle can be performed in 1 / 2GHz = 0.5ns
+encryption for one password lasts 0.5ns * 28.48 = 14.24ns
+
+==> thus (neglecting all other cost) we can encrypt 7.5843E6 passwords (=108ms / 14.24ns)
+==> to break all we would need to construct 1.2089E24 passwords, which needs for our processor(assuming no cost for the logic) 5.455E8 average Gregorian years. Way too much.
+
+
+
+
+
+what should be stated here:
+---------------------------
+assume each password is 11bytes long
+each password can be encrypted (assuming same speed like for decryption) in 0.89 * 11 cycles = 9.79 cycles
+one cycle equals 0.5ns
+9.79 cycles can be done in 4.895ns
+
+=> thus in 108ms we can encrypt 108ms / 4.895ns = 2.2063E7 passwords

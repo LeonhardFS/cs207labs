@@ -1,0 +1,30 @@
+Question 3
+==========
+
+return adress of main function is: 0x0000000100000ef4
+
+
+from the gdb log we see that the return adress is located at a[7]
+
+
+(gdb) print/x a[-5]@15
+$1 = {0x100000e3b, 0x7fff7b32b0c8, 0x7fff7b32b070, 0x100000de0, 0x0, 0x1, 0x2, 
+  0x3, 0x4, 0x5, 0x33004d03ed528367, 0x7fff5fbffb50, 0x100000ef4, 0x0, 0x0}
+(gdb) backtrace
+#0  victim_function (index=0) at overflow.c:14
+#1  0x0000000100000ef4 in main (argc=2, argv=0x7fff5fbffb78) at overflow.c:29
+
+
+On the stack the current functions are 
+
+#0  win () at overflow.c:6
+#1  0x0000000000000000 in ?? ()
+
+The stack looks like this because we totally messed up the whole instruction stack. 
+
+
+
+To make the exploit actually work, we need to disable the compilers stack protection. 
+Do this via gcc overflow.c -o overflow -fno-stack-protector
+
+
