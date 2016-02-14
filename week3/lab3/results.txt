@@ -1,0 +1,13 @@
+results:
+
+70 positive integers: 193 / 1000 bits
+
+N_HASHES, occupancy[bits], false positives[of 100]
+1, 164, 9
+2, 317, 1
+3, 463, 4
+4, 586, 1 
+5, 689, 1
+
+
+==> increasing the number of hashes leads to increased occupancy but seems to reduce collisions!
